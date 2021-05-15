@@ -1,0 +1,58 @@
+<div class="card border-secondary card">
+  <div class="card-header">{{ titulo }}</div>
+  <div class="card-body text-secondary">
+    <form>
+      <div class="mb-3">
+        <label for="usuarioNombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" [(ngModel)]="usuario.usuarioNombre" name="usuarioNombre"  required #usuarioNombre="ngModel">
+        <div class="alert alert-danger" *ngIf="usuarioNombre.invalid && (usuarioNombre.dirty || usuarioNombre.touched)">
+          <div class="usuarioNombre.errors.required">
+            Nombre es requerido
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="usuarioCorreo" class="form-label">Correo</label>
+        <input type="email" class="form-control" [(ngModel)]="usuario.usuarioCorreo" name="usuarioCorreo" required email #usuarioCorreo="ngModel">
+        <div class="alert alert-danger" *ngIf="usuarioCorreo.invalid && (usuarioCorreo.dirty || usuarioCorreo.touched)">
+          <div class="usuarioCorreo.errors.required">
+            Correo es requerido
+          </div>
+          <div class="usuarioCorreo.errors.email">
+            Correo debe tener un formato válido
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="usuarioContrasena" class="form-label">Contreseña</label>
+        <input type="text" class="form-control" [(ngModel)]="usuario.usuarioContrasena" name="usuarioContrasena"  required #usuarioContrasena="ngModel">
+        <div class="alert alert-danger" *ngIf="usuarioContrasena.invalid && (usuarioContrasena.dirty || usuarioContrasena.touched)">
+          <div class="usuarioContrasena.errors.required">
+            Contraseña es requerido
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="usuarioInformacion" class="form-label">Información</label>
+        <textarea type="text" class="form-control" [(ngModel)]="usuario.usuarioInformacion"name="usuarioInformacion" rows="5" cols="80"></textarea>
+      </div>
+
+      <div class="mb-2">
+        <label for="usuarioActivo" class="form-label">Estado</label>
+        <select class="form-select" [(ngModel)]="usuario.usuarioActivo" [ngModelOptions]="{standalone: true}">
+          <option selected>Choose...</option>
+          <option value=true>Activo</option>
+          <option value=false>Bloqueado</option>
+        </select>
+      </div>
+
+      <div class="form-group mb-3">
+        <button type="button" class="btn btn-outline-success mr-2" role="button" (click)='crear()' *ngIf="mode =='ins'">Confirmar</button>
+        <button type="button" class="btn btn-outline-success mr-2" role="button" (click)='modificar()' *ngIf="mode =='upd'">Confirmar</button>
+        <button type="button" class="btn btn-outline-success mr-2" role="button" (click)='eliminar()' *ngIf="mode =='dlt'">Confirmar</button>
+        <button type="button" class="btn btn-outline-secondary mr-2" role="button" (click)='cancelar()'>Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>

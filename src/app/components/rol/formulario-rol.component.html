@@ -1,0 +1,26 @@
+<div class="card border-secondary card">
+  <div class="card-header">{{ titulo }}</div>
+  <div class="card-body text-secondary">
+    <form>
+      <div class="mb-3">
+        <label for="rolNombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" [(ngModel)]="rol.rolNombre" name="rolNombre" required #rolNombre="ngModel">
+        <div class="alert alert-danger" *ngIf="rolNombre.invalid && (rolNombre.dirty || rolNombre.touched)">
+          <div class="rolNombre.errors.required">
+            Nombre es requerido
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="rolDescripcion" class="form-label">Descripción</label>
+        <input type="text" class="form-control" [(ngModel)]="rol.rolDescripcion" name="rolDescripcion" required>
+      </div>
+      <div class="form-group mb-3">
+        <button type="button" class="btn btn-outline-success mr-2" role="button" (click)='crear()' *ngIf="mode =='ins'">Confirmar</button>
+        <button type="button" class="btn btn-outline-success mr-2" role="button" (click)='modificar()' *ngIf="mode =='upd'">Confirmar</button>
+        <button type="button" class="btn btn-outline-success mr-2" role="button" (click)='eliminar()' *ngIf="mode =='dlt'">Confirmar</button>
+        <button type="button" class="btn btn-outline-secondary mr-2" role="button" (click)='cancelar()'>Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
