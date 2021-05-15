@@ -4,7 +4,7 @@
     <form>
       <div class="mb-3">
         <label for="usuarioNombre" class="form-label">Nombre</label>
-        <input type="text" class="form-control" [(ngModel)]="usuario.usuarioNombre" name="usuarioNombre"  required #usuarioNombre="ngModel">
+        <input type="text" class="form-control" [(ngModel)]="usuario.usuarioNombre" name="usuarioNombre" required #usuarioNombre="ngModel">
         <div class="alert alert-danger" *ngIf="usuarioNombre.invalid && (usuarioNombre.dirty || usuarioNombre.touched)">
           <div class="usuarioNombre.errors.required">
             Nombre es requerido
@@ -25,27 +25,48 @@
       </div>
 
       <div class="mb-3">
+        <label for="usuarioFechaNacimiento" class="form-label">Fecha Nacimiento</label>
+        <input type="date" class="form-control" [(ngModel)]="usuario.usuarioFechaNacimiento" name="usuarioFechaNacimiento" required #usuarioFechaNacimiento="ngModel">
+        <div class="alert alert-danger" *ngIf="usuarioFechaNacimiento.invalid && (usuarioFechaNacimiento.dirty || usuarioNombre.touched)">
+          <div class="usuarioFechaNacimiento.errors.required">
+            Fecha nacimiento es requerido
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
         <label for="usuarioContrasena" class="form-label">Contreseña</label>
-        <input type="text" class="form-control" [(ngModel)]="usuario.usuarioContrasena" name="usuarioContrasena"  required #usuarioContrasena="ngModel">
+        <input type="password" class="form-control" [(ngModel)]="usuario.usuarioContrasena" name="usuarioContrasena" required #usuarioContrasena="ngModel">
         <div class="alert alert-danger" *ngIf="usuarioContrasena.invalid && (usuarioContrasena.dirty || usuarioContrasena.touched)">
           <div class="usuarioContrasena.errors.required">
             Contraseña es requerido
           </div>
         </div>
       </div>
+
       <div class="mb-3">
         <label for="usuarioInformacion" class="form-label">Información</label>
-        <textarea type="text" class="form-control" [(ngModel)]="usuario.usuarioInformacion"name="usuarioInformacion" rows="5" cols="80"></textarea>
+        <textarea type="text" class="form-control" [(ngModel)]="usuario.usuarioInformacion" name="usuarioInformacion" rows="3"></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="usuarioConocimientos" class="form-label">Conocimientos</label>
+        <textarea type="text" class="form-control" [(ngModel)]="usuario.usuarioConocimientos" name="usuarioConocimientos" rows="3"></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="usuarioIntereses" class="form-label">Intereses</label>
+        <textarea type="text" class="form-control" [(ngModel)]="usuario.usuarioIntereses" name="usuarioIntereses" rows="3"></textarea>
       </div>
 
       <div class="mb-2">
         <label for="usuarioActivo" class="form-label">Estado</label>
-        <select class="form-select" [(ngModel)]="usuario.usuarioActivo" [ngModelOptions]="{standalone: true}">
-          <option selected>Choose...</option>
-          <option value=true>Activo</option>
-          <option value=false>Bloqueado</option>
-        </select>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1" [(ngModel)]="usuario.usuarioActivo" [ngModelOptions]="{standalone: true}" >
+          <label class="form-check-label" for="exampleCheck1">Activo</label>
+        </div>
       </div>
+
 
       <div class="form-group mb-3">
         <button type="button" class="btn btn-outline-success mr-2" role="button" (click)='crear()' *ngIf="mode =='ins'">Confirmar</button>

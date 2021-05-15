@@ -16,24 +16,21 @@ export class UsuarioService {
   constructor(private http: HttpClient) { }
 
   listarUsuarios(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(`${this.urlEndPoint}/listar`).pipe(
-      map(response => {
-        let usuarios = response as Usuario[];
-        return usuarios.map(usuario => {
-          // usuario.usuarioActivo = usuario.usuarioActivo ? "Yes" : "No";
-          // {{ usuario.usuarioActivo ? ('true' | 'Activo') : ('true' | 'InActivo') }
-          return usuario;
-        });
+    return this.http.get<Usuario[]>(`${this.urlEndPoint}/listar`);
   }
-      )
-      );
-}
 
-retonarUsuario(usuarioId: number): Observable < Usuario > {
-  return this.http.get<Usuario>(`${this.urlEndPoint}/visualizar/${usuarioId}`)
-}
+  retonarUsuario(usuarioId: number): Observable<Usuario> {
+    return this.http.get<Usuario>(`${this.urlEndPoint}/visualizar/${usuarioId}`)
+  }
 
-crearUsuario(usuario: Usuario): Observable < Usuario > {
-  return this.http.post<Usuario>(`${this.urlEndPoint}/crear`, usuario, { headers: this.httpHeaders })
-}
+  crearUsuario(usuario: Usuario): Observable<Usuario> {
+    return this.http.post<Usuario>(`${this.urlEndPoint}/crear`, usuario, { headers: this.httpHeaders })
+  }
+  modificarUsuario(usuario: Usuario): Observable<Usuario> {
+    return this.http.put<Usuario>(`${this.urlEndPoint}/modificar/${usuario.usuarioId}`, usuario, { headers: this.httpHeaders })
+  }
+
+  eliminarUsuario(usuario: Usuario): Observable<Usuario> {
+    return this.http.delete<Usuario>(`${this.urlEndPoint}/eliminar/${usuario.usuarioId}`, { headers: this.httpHeaders })
+  }
 }
