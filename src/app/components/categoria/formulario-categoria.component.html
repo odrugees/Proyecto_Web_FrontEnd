@@ -1,0 +1,35 @@
+<div class="card border-secondary card">
+  <div class="card-header">{{ titulo }}</div>
+  <div class="card-body text-secondary">
+    <form>
+      <div class="mb-3">
+        <label for="categoriaNombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" [(ngModel)]="categoria.categoriaNombre" name="categoriaNombre" required #categoriaNombre="ngModel">
+        <div class="alert alert-danger" *ngIf="categoriaNombre.invalid && (categoriaNombre.dirty || categoriaNombre.touched)">
+          <div class="rolNombre.errors.required">
+            Nombre es requerido
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="categoriaDescripcion" class="form-label">Descripción</label>
+        <input type="text" class="form-control" [(ngModel)]="categoria.categoriaDescripcion" name="categoriaDescripcion" required>
+      </div>
+
+      <div class="mb-2">
+        <label for="categoriaActiva" class="form-label">Estado</label>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1" [(ngModel)]="categoria.categoriaActiva" [ngModelOptions]="{standalone: true}" >
+          <label class="form-check-label" for="exampleCheck1">Activo</label>
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <button type="button" class="btn btn-outline-success mr-2" role="button" (click)='crear()' *ngIf="mode =='ins'">Confirmar</button>
+        <button type="button" class="btn btn-outline-success mr-2" role="button" (click)='modificar()' *ngIf="mode =='upd'">Confirmar</button>
+        <button type="button" class="btn btn-outline-success mr-2" role="button" (click)='eliminar()' *ngIf="mode =='dlt'">Confirmar</button>
+        <button type="button" class="btn btn-outline-secondary mr-2" role="button" (click)='cancelar()'>Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Usuario } from 'src/app/model/usuario';
-import { map } from 'rxjs/operators';
+import { Categoria } from '../model/categoria';
 
 
 
@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UsuarioService {
-  private urlEndPoint: string = 'https://policonectados.herokuapp.com/api/usuario';
+  private urlEndPoint: string = '/api/usuario';
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' })
 
   constructor(private http: HttpClient) { }
@@ -33,4 +33,8 @@ export class UsuarioService {
   eliminarUsuario(usuario: Usuario): Observable<Usuario> {
     return this.http.delete<Usuario>(`${this.urlEndPoint}/eliminar/${usuario.usuarioId}`, { headers: this.httpHeaders })
   }
+
+  listarCategorias(): Observable<Categoria[]> {
+      return this.http.get<Categoria[]>(`${this.urlEndPoint}/listar/categorias`);
+    }
 }

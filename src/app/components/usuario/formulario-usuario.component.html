@@ -3,6 +3,15 @@
   <div class="card-body text-secondary">
     <form>
       <div class="mb-3">
+        <label for="usuarioUsuario" class="form-label">Usuario</label>
+        <input type="text" class="form-control" [(ngModel)]="usuario.usuario" name="usuario" required #usuarioUsuario="ngModel" [readonly]="mode != 'ins'">
+        <div class="alert alert-danger" *ngIf="usuarioUsuario.invalid && (usuarioUsuario.dirty || usuarioUsuario.touched)">
+          <div class="usuarioUsuario.errors.required">
+            Usuario es requerido
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
         <label for="usuarioNombre" class="form-label">Nombre</label>
         <input type="text" class="form-control" [(ngModel)]="usuario.usuarioNombre" name="usuarioNombre" required #usuarioNombre="ngModel">
         <div class="alert alert-danger" *ngIf="usuarioNombre.invalid && (usuarioNombre.dirty || usuarioNombre.touched)">
@@ -23,7 +32,6 @@
           </div>
         </div>
       </div>
-
       <div class="mb-3">
         <label for="usuarioFechaNacimiento" class="form-label">Fecha Nacimiento</label>
         <input type="date" class="form-control" [(ngModel)]="usuario.usuarioFechaNacimiento" name="usuarioFechaNacimiento" required #usuarioFechaNacimiento="ngModel">
@@ -42,6 +50,15 @@
             Contraseña es requerido
           </div>
         </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="usuarioCategorias" class="form-label">Categorias preferidas</label>
+
+         <select multiple="true" class="form-control" [(ngModel)]="usuario.usuarioCategorias" name="usuarioCategorias"[compareWith]="compararCategoria" >
+
+          <option *ngFor="let categoria of categorias" [ngValue]="categoria">{{categoria.categoriaNombre}}</option>
+        </select>
       </div>
 
       <div class="mb-3">

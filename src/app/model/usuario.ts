@@ -1,5 +1,8 @@
+import { Categoria } from './categoria';
+
 export class Usuario {
   usuarioId: number;
+  usuario: string;
   usuarioActivo: boolean;
   usuarioConocimientos: string;
   usuarioContrasena: string;
@@ -8,4 +11,5 @@ export class Usuario {
   usuarioInformacion: string;
   usuarioIntereses: string;
   usuarioNombre: string;
+  usuarioCategorias: Categoria[];
 }

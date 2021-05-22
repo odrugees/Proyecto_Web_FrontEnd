@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Categoria } from 'src/app/model/categoria';
 import { Usuario } from 'src/app/model/usuario';
-import { UsuarioService } from 'src/app/services/usuario/usuario.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 import Swal from 'sweetalert2'
 
 @Component({
@@ -10,9 +11,10 @@ import Swal from 'sweetalert2'
 })
 export class FormularioUsuarioComponent implements OnInit {
 
-  public usuario: Usuario = new Usuario()
-  public titulo: string = "Usuario"
-  public mode: string = "dsp"
+  usuario: Usuario = new Usuario()
+  categorias: Categoria[];
+  titulo: string = "Usuario"
+  mode: string = "dsp"
 
   constructor(private usuarioService: UsuarioService,
     private router: Router, private activatedRoute: ActivatedRoute) { }
@@ -29,9 +31,11 @@ export class FormularioUsuarioComponent implements OnInit {
         this.usuarioService.retonarUsuario(id).subscribe((usuario) => this.usuario = usuario)
       }
     })
+    this.usuarioService.listarCategorias().subscribe(categorias => this.categorias = categorias);
   }
 
   public crear(): void {
+    console.log(this.usuario)
     this.usuarioService.crearUsuario(this.usuario)
       .subscribe(usuario => {
         this.router.navigate(['/usuarios'])
@@ -69,8 +73,14 @@ export class FormularioUsuarioComponent implements OnInit {
       }
     })
   }
-  public cancelar(): void{
-      this.router.navigate(['/usuarios'])
+  public cancelar(): void {
+    this.router.navigate(['/usuarios'])
   }
 
+  compararCategoria = (c1: Categoria, c2: Categoria) => {
+    if (Array.isArray(c2)) {
+      return c2.indexOf(c1) !== -1;
+    }
+    return c1 && c2 ? c1.categoriaId === c2.categoriaId : c1 === c2;
+  }
 }

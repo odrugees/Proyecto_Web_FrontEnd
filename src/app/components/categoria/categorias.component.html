@@ -1,0 +1,37 @@
+<div class="card border-secondary mb-3">
+  <div class="card-header">Listado de categorias</div>
+  <div class="card-body text-secondary">
+    <!-- <h5 class="card-title">Listado de roles</h5> -->
+    <div class="my-2 text-left">
+      <button class="btn btn-outline-primary" type="button" [routerLink]="['/categoria/formulario','ins',0]">Nuevo</button>
+    </div>
+
+    <div *ngIf="categorias?.length==0" class="alert alert-info">
+      No se encontraron registros!
+    </div>
+    <table class="table table-bordered " *ngIf="categorias?.length>0">
+      <thead class="text-center">
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Estado</th>
+        <th></th>
+        <th></th>
+      </thead>
+      <tbody class="text-center col-md-12 mb-4">
+        <tr *ngFor="let categoria of categorias">
+          <td>{{categoria.categoriaId}}</td>
+          <td>{{categoria.categoriaNombre}}</td>
+          <td>{{categoria.categoriaDescripcion}}</td>
+          <td>{{categoria.categoriaActiva ? 'Activo' : 'Bloquedo'}}</td>
+          <td>
+            <button type="button" name="button" [routerLink]="['/categoria/formulario', 'upd' ,categoria.categoriaId]" class="btn btn-outline-secondary btn-sm">Editar</button>
+          </td>
+          <td>
+            <button type="button" name="button" [routerLink]="['/categoria/formulario', 'dlt' ,categoria.categoriaId]" class="btn btn-outline-danger btn-sm">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
