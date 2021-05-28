@@ -1,3 +1,6 @@
+import { Categoria } from './categoria';
+import { Usuario } from './usuario';
+
 export class Publicacion {
   publicacionId: number;
   usuario: Usuario;
@@ -6,4 +9,5 @@ export class Publicacion {
   publicacionMeGusta: number;
   publicacionNoMeGusta: number;
   publicacionFecha: Date;
+  categoria: Categoria;
 }

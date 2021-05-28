@@ -21,7 +21,6 @@ export class RolesComponent implements OnInit {
 
   ngOnInit(): void {
     this.estaRegistrador = this.inicioSesionService.isUserLoggedIn();
-    console.log('registrso ->'+ this.estaRegistrador);
     if (this.estaRegistrador){
       this.rolService.listarRoles().subscribe((data: Rol[]) => {
         this.roles = data;

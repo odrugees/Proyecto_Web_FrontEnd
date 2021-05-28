@@ -1,0 +1,19 @@
+<div class="card border-secondary mb-3">
+  <div class="card-header">Listado de publicaciones</div>
+  <div class="card-body text-secondary">
+    <!-- <h5 class="card-title">Listado de roles</h5> -->
+    <div class="my-2 text-left">
+      <button class="btn btn-outline-primary" type="button" [routerLink]="['/publicacion/formulario','ins',0]">Nuevo</button>
+    </div>
+    <div *ngFor="let publicacion of publicaciones" class="card" style="width: 80%;">
+        <img *ngIf="publicacion?.publicacionImagen" src="http://localhost:8080/api/publicacion/uploads/imagen/{{publicacion.publicacionImagen}}" class="img-fluid rounded" alt="{{publicacion.publicacionImagen}}">
+      <div class="card-body">
+        <p class="card-title">{{publicacion.publicacionTexto}}</p>
+        <h5 class="card-text">{{publicacion.categoria.categoriaNombre}}</h5>
+        <h6 class="card-text">@{{publicacion.usuario.usuarioNombre}} - {{publicacion.publicacionFecha}} </h6>
+        <button type="button" class="btn btn-outline-success mr-2" role="button" (click)='megusta(publicacion)'>Me Gusta ({{publicacion.publicacionMeGusta}})</button>
+        <button type="button" class="btn btn-outline-danger mr-2" role="button" (click)='noMegusta(publicacion)'>No Me Gusta ({{publicacion.publicacionNoMeGusta}})</button>
+      </div>
+    </div>
+  </div>
+</div>

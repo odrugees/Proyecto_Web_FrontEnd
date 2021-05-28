@@ -28,7 +28,7 @@ export class InicioSesionService {
   createBasicAuthToken(usuario: string, contrasena: string) {
     return 'Basic ' + window.btoa(usuario + ":" + contrasena)
   }
-  registerSuccessfulLogin(usuario, contrasena) {
+  registerSuccessfulLogin(usuario: string, contrasena: string) {
     sessionStorage.setItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME, usuario)
   }
   logout() {

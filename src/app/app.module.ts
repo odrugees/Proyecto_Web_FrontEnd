@@ -7,6 +7,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RolService } from './services/rol.service'
 import { UsuarioService } from './services/usuario.service'
+import { PublicacionService } from './services/publicacion.service'
 import { InicioSesionService } from './services/inicio-sesion.service'
 import { HttpInterceptorService } from './services/http-interceptor.service'
 import { RouterModule, Routes} from '@angular/router';
@@ -17,6 +18,8 @@ import { FormularioUsuarioComponent } from './components/usuario/formulario-usua
 import { CategoriasComponent } from './components/categoria/categorias.component';
 import { FormularioCategoriaComponent } from './components/categoria/formulario-categoria.component';
 import { InicioSesionComponent } from './components/inicio-sesion/inicio-sesion.component';
+import { PublicacionComponent } from './components/publicacion/publicacion.component';
+import { FormularioPublicacionComponent } from './components/publicacion/formulario-publicacion.component';
 
 
 const routes: Routes =[
@@ -29,6 +32,8 @@ const routes: Routes =[
   {path: 'categorias', component: CategoriasComponent},
   {path: 'categoria/formulario/:mode/:id', component: FormularioCategoriaComponent},
   {path: 'logout', component: InicioSesionComponent},
+  {path: 'publicaciones', component: PublicacionComponent},
+  {path: 'publicacion/formulario/:mode/:id', component: FormularioPublicacionComponent},
 ];
 
 @NgModule({
@@ -42,7 +47,9 @@ const routes: Routes =[
     FormularioUsuarioComponent,
     CategoriasComponent,
     FormularioCategoriaComponent,
-    InicioSesionComponent
+    InicioSesionComponent,
+    PublicacionComponent,
+    FormularioPublicacionComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +64,8 @@ const routes: Routes =[
       multi: true
     },RolService,
     UsuarioService,
-    InicioSesionService],
+    InicioSesionService,
+    PublicacionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
